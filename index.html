@@ -2,36 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hello World Page</title>
+  <title>Fixed Image + Random Fact</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 80px;
     }
 
     h1 {
-      color: blue;
-      font-size: 48px;
-    }
-
-    p {
-      font-size: 20px;
-      margin-bottom: 40px;
+      color: darkblue;
+      font-size: 40px;
     }
 
     button {
       padding: 15px 30px;
       font-size: 18px;
       cursor: pointer;
+      margin-top: 20px;
     }
 
     #factImageContainer {
       display: none;
-      margin-top: 30px;
-      display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      margin-top: 40px;
       gap: 30px;
     }
 
@@ -39,29 +34,31 @@
       background-color: #f0f8ff;
       padding: 20px;
       border-radius: 10px;
-      width: 40%;
-      text-align: left;
+      width: 300px;
       font-size: 18px;
+      text-align: left;
+      border: 1px solid #ccc;
     }
 
     #randomImage {
-      width: 300px;
-      height: auto;
+      width: 200px;
+      height: 200px;
       border-radius: 10px;
       border: 1px solid #ccc;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
 
   <h1>Hello World!</h1>
-  <p>How may we help you?</p>
+  <p>Click below for a random fact and fixed image:</p>
 
   <button onclick="showRandomFact()">Show Random Fact</button>
 
   <div id="factImageContainer">
     <div id="factBox">Your fact will appear here.</div>
-    <img id="randomImage" src="" alt="Random Image">
+    <img id="randomImage" alt="Fixed Image">
   </div>
 
   <script>
@@ -73,24 +70,19 @@
       "The Eiffel Tower can grow more than 6 inches in the summer heat."
     ];
 
-    const images = [
-      "https://upload.wikimedia.org/wikipedia/commons/0/02/Honey_comb.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/19/Octopus2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/41/Flamingo_Lagoon.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
-    ];
+    // Base64 encoded small image (a cat photo) — always loads!
+    const base64Image = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////2wBDAf//////////////////////////////////////////////////////////////////////////////////////wAARCAAQABADASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBf/EACQQAAIBAwMDBQAAAAAAAAAAAAECAwQFEQAGIQcSExQxM2GR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAbEQACAgMBAAAAAAAAAAAAAAABAgARAxIxUf/aAAwDAQACEQMRAD8A+YblpTiZLltHGvNQKggEZRIBk8k/gABOf1oLqznbXZvOrVlti1Ub8cqZmZJm4yDqIXgdvM9+/eoJpZGgWT/ABjFJixMzKT2XnmnShT1kX1suoAcBhSRoSBtPDRv0kGQfXrkI04tU7NKiSWukWJ7eJdfPbr6mYmZu6b2BGDnnro4uVm/2MLLa+Ob1dfSnKKrTL9HD3FJNyQJ53Kxz0tvpqIMrf6FQCD+c+n99Bz8aJ1rx+bgf3v5UT/Nv3oZHV1CltGG61GVG4qzNkXmfW9OKj/2Q==";
 
     function showRandomFact() {
-      const factContainer = document.getElementById('factImageContainer');
+      const container = document.getElementById('factImageContainer');
       const factBox = document.getElementById('factBox');
-      const image = document.getElementById('randomImage');
+      const randomImage = document.getElementById('randomImage');
 
       const randomIndex = Math.floor(Math.random() * facts.length);
       factBox.textContent = facts[randomIndex];
-      image.src = images[randomIndex];
+      randomImage.src = base64Image;
 
-      factContainer.style.display = 'flex';
+      container.style.display = 'flex';
     }
   </script>
 
