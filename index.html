@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fixed Image + Random Fact</title>
+  <title>Random Fact with Guaranteed Image</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -52,13 +52,13 @@
 <body>
 
   <h1>Hello World!</h1>
-  <p>Click below for a random fact and fixed image:</p>
+  <p>Click the button for a random fact and image:</p>
 
   <button onclick="showRandomFact()">Show Random Fact</button>
 
   <div id="factImageContainer">
     <div id="factBox">Your fact will appear here.</div>
-    <img id="randomImage" alt="Fixed Image">
+    <img id="randomImage" alt="Image">
   </div>
 
   <script>
@@ -70,17 +70,17 @@
       "The Eiffel Tower can grow more than 6 inches in the summer heat."
     ];
 
-    // Base64 encoded small image (a cat photo) — always loads!
-    const base64Image = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////2wBDAf//////////////////////////////////////////////////////////////////////////////////////wAARCAAQABADASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBf/EACQQAAIBAwMDBQAAAAAAAAAAAAECAwQFEQAGIQcSExQxM2GR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAbEQACAgMBAAAAAAAAAAAAAAABAgARAxIxUf/aAAwDAQACEQMRAD8A+YblpTiZLltHGvNQKggEZRIBk8k/gABOf1oLqznbXZvOrVlti1Ub8cqZmZJm4yDqIXgdvM9+/eoJpZGgWT/ABjFJixMzKT2XnmnShT1kX1suoAcBhSRoSBtPDRv0kGQfXrkI04tU7NKiSWukWJ7eJdfPbr6mYmZu6b2BGDnnro4uVm/2MLLa+Ob1dfSnKKrTL9HD3FJNyQJ53Kxz0tvpqIMrf6FQCD+c+n99Bz8aJ1rx+bgf3v5UT/Nv3oZHV1CltGG61GVG4qzNkXmfW9OKj/2Q==";
+    // ✅ 100% offline-safe base64 image (a red circle)
+    const base64Image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAMFBMVEUAAAD///+UlJTn5+fV1dXw8PDb29vX19f5+fnT09P8/PzCwsK+vr7AwMDq6uqmpqZLK4VxAAABiElEQVR4nO3WTU7DQBRE0bLq//+0E4NJZQ0fdnlF/gKkWw+3nnDnklkAAAAAAAAAADgObZYdG/r9BdKvwHqgHwXqgXwXqgfBesB+oB8F6oF8F6oHwXrAfqAfBes3v9tLvP/Px4tk0nuuuRPr4c/cYZ0nqOvL+l/Qu6rbl8B6qF8F6oF8F6oHwXrAfqAfBesB+oB8F6oF8F6oHwXrAfqAfBesB+qfe7+YfbeX9rU1va6yzPSH1fBP2Mt7Z+7lXb7AAAAAElFTkSuQmCC";
 
     function showRandomFact() {
       const container = document.getElementById('factImageContainer');
       const factBox = document.getElementById('factBox');
-      const randomImage = document.getElementById('randomImage');
+      const image = document.getElementById('randomImage');
 
       const randomIndex = Math.floor(Math.random() * facts.length);
       factBox.textContent = facts[randomIndex];
-      randomImage.src = base64Image;
+      image.src = base64Image;
 
       container.style.display = 'flex';
     }
