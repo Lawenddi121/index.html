@@ -57,12 +57,12 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    #randomShape {
+    .fact-image {
       width: 200px;
       height: 200px;
+      object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
     }
   </style>
 </head>
@@ -75,7 +75,13 @@
 
   <div id="factImageContainer" class="hidden">
     <div id="factBox">Your fact will appear here.</div>
-    <div id="randomShape"></div>
+
+    <!-- Images (all hidden initially) -->
+    <img id="img0" class="fact-image hidden" src="images/honey.jpg" alt="Honey">
+    <img id="img1" class="fact-image hidden" src="images/octopus.jpg" alt="Octopus">
+    <img id="img2" class="fact-image hidden" src="images/strawberry.jpg" alt="Strawberries">
+    <img id="img3" class="fact-image hidden" src="images/flamingos.jpg" alt="Flamingos">
+    <img id="img4" class="fact-image hidden" src="images/eiffel.jpg" alt="Eiffel Tower">
   </div>
 
   <script>
@@ -87,40 +93,24 @@
       "The Eiffel Tower can grow more than 6 inches in the summer heat due to thermal expansion of the iron."
     ];
 
-    const shapes = [
-      { type: 'circle', color: '#ff6b6b', borderRadius: '50%' },
-      { type: 'square', color: '#4ecdc4', borderRadius: '10px' },
-      { type: 'triangle', color: '#45b7d1', clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' },
-      { type: 'diamond', color: '#96ceb4', transform: 'rotate(45deg)' },
-      { type: 'hexagon', color: '#ffeaa7', clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)' }
-    ];
-
     function showRandomFact() {
-      console.log("Button clicked!"); // Debug log
-      
       const factContainer = document.getElementById('factImageContainer');
       const factBox = document.getElementById('factBox');
-      const shape = document.getElementById('randomShape');
 
+      // Hide all images
+      for (let i = 0; i < facts.length; i++) {
+        document.getElementById('img' + i).classList.add('hidden');
+      }
+
+      // Pick a random index
       const randomIndex = Math.floor(Math.random() * facts.length);
-      
-      console.log("Random index:", randomIndex); // Debug log
-      console.log("Selected fact:", facts[randomIndex]); // Debug log
-      
-      // Update content
+
+      // Show the fact and the matching image
       factBox.textContent = facts[randomIndex];
-      
-      // Apply random shape styles
-      const selectedShape = shapes[randomIndex];
-      shape.style.backgroundColor = selectedShape.color;
-      shape.style.borderRadius = selectedShape.borderRadius || '10px';
-      shape.style.clipPath = selectedShape.clipPath || 'none';
-      shape.style.transform = selectedShape.transform || 'none';
-      
-      // Show the container
+      document.getElementById('img' + randomIndex).classList.remove('hidden');
+
+      // Make the container visible
       factContainer.className = 'visible';
-      
-      console.log("Container should now be visible with shape:", selectedShape.type); // Debug log
     }
   </script>
 
