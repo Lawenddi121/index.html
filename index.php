@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    h1 {
+      color: blue;
+      font-size: 48px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: flex;
+      margin-top: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    #factBox {
+      background-color: #f0f8ff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: left;
+      font-size: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .fact-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hello World!</h1>
+  <p>How may we help you?</p>
+
+  <button onclick="showRandomFact()">Show Random Fact</button>
+
+  <div id="factImageContainer" class="hidden">
+    <div id="factBox">Your fact will appear here.</div>
+
+    <!-- Images (all hidden initially) -->
+    <img id="img0" class="fact-image hidden" src="images/download (3).jfif" alt="Honey">
+    <img id="img1" class="fact-image hidden" src="images/download.jfif" alt="Octopus">
+    <img id="img2" class="fact-image hidden" src="images/download (1).jfif" alt="Strawberries">
+    <img id="img3" class="fact-image hidden" src="images/images.jfif" alt="Flamingos">
+    <img id="img4" class="fact-image hidden" src="images/download (2).jfif" alt="Eiffel Tower">
+  </div>
+
+  <script>
+    const facts = [
+      "Honey never spoils. Archaeologists have found 3000-year-old honey in Egyptian tombs that was still edible!",
+      "Octopuses have three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps blood to the rest of the body.",
+      "Bananas are berries, but strawberries aren't! Botanically speaking, berries must have seeds inside their flesh.",
+      "A group of flamingos is called a 'flamboyance'. They get their pink color from eating shrimp and algae.",
+      "The Eiffel Tower can grow more than 6 inches in the summer heat due to thermal expansion of the iron."
+    ];
+
+    function showRandomFact() {
+      const factContainer = document.getElementById('factImageContainer');
+      const factBox = document.getElementById('factBox');
+
+      // Hide all images
+      for (let i = 0; i < facts.length; i++) {
+        document.getElementById('img' + i).classList.add('hidden');
+      }
+
+      // Pick a random index
+      const randomIndex = Math.floor(Math.random() * facts.length);
+
+      // Show the fact and the matching image
+      factBox.textContent = facts[randomIndex];
+      document.getElementById('img' + randomIndex).classList.remove('hidden');
+
+      // Make the container visible
+      factContainer.className = 'visible';
+    }
+  </script>
+
+</body>
+</html>
